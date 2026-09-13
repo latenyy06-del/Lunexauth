@@ -1,0 +1,25 @@
+name: lauth
+version: 1.0
+main: com.lunex.lauth.LauthPlugin
+description: LunexVanilla Auth Plugin - AuthMe tarzı kimlik doğrulama sistemi
+author: LunexVanilla
+website: https://lunexvanilla.com
+
+commands:
+  login:
+    description: Sunucuya giriş yap
+    usage: /login <şifre>
+    aliases: [l, ogin]
+  
+  register:
+    description: Yeni hesap oluştur
+    usage: /register <şifre> <şifre-tekrar>
+    aliases: [reg, signup]
+
+permissions:
+  lauth.admin:
+    description: lauth yöneticisi izni
+    default: op
+  lauth.bypass:
+    description: Doğrulama sistemini atla
+    default: false
