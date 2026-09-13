@@ -1,0 +1,71 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# LunexVanilla - lauth Plugin Yapılandırması
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Lobby/Giriş yapılmamış oyuncuların bulunduğu dünya adı
+lobby-world: lauth_lobby
+
+# Giriş yaptıktan sonra spawn edilecek dünya
+main-world: world
+
+# Şifre minimum uzunluğu
+min-password-length: 3
+
+# Şifre maksimum uzunluğu
+max-password-length: 32
+
+# Yanlış şifre denemelerine karşı rate limiting
+# Belirtilen saniye içinde kaç kez yanlış şifre denenemeyeceği
+rate-limit-attempts: 3
+rate-limit-seconds: 30
+
+# Lobby spawn noktası koordinatları
+lobby-spawn:
+  x: 0.5
+  y: 64
+  z: 0.5
+  yaw: 0
+  pitch: 0
+
+# İlk kez gelen oyuncular için hoş geldiniz mesajı
+welcome-message:
+  - "§c════════════════════════════════════════"
+  - "§c╔════════════ LunexVanilla ════════════╗"
+  - "§c║"
+  - "§c║  §fHoş geldiniz sunucumuza!"
+  - "§c║"
+  - "§c║  §cEğer hesabınız varsa:"
+  - "§c║  §f/login <şifre>"
+  - "§c║"
+  - "§c║  §cYeni hesap oluşturmak için:"
+  - "§c║  §f/register <şifre> <şifre-tekrar>"
+  - "§c║"
+  - "§c╚════════════════════════════════════════╝"
+  - "§c════════════════════════════════════════"
+
+# Giriş yapıldığında gösterilecek mesaj
+login-success: "§c✓ §fGiriş başarılı! Sunucuya hoş geldiniz!"
+
+# Başarısız giriş mesajı
+login-failed: "§c❌ §fŞifre hatalı! Lütfen tekrar deneyin."
+
+# Kayıt başarılı mesajı
+register-success: "§c✓ §fKayıt başarılı! Sunucuya hoş geldiniz."
+
+# Zaten kayıtlı mesajı
+already-registered: "§c❌ §fBu kullanıcı adı zaten kayıtlı!"
+
+# Zorunlu giriş sistemi
+force-login: true
+
+# Lobby dünyasında oyuncuların blok kırmasına izin ver
+allow-break-blocks-lobby: false
+
+# Lobby dünyasında oyuncuların blok yerleştirmesine izin ver
+allow-place-blocks-lobby: false
+
+# Lobby dünyasında PvP
+pvp-lobby: false
+
+# Lobby dünyasında harita aydınlatılsın mı?
+light-lobby: true

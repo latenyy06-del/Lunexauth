@@ -1,0 +1,331 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║           LUNEXVANILLA LAUTH PLUGIN - TÜM JAVA KODLARI (TEK TEK)               ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+🎯 TÜM DOSYALAR AÇIKLAMASI:
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ JAVA DOSYALARI (5 Adet)
+═══════════════════════════════════════════════════════════════════════════════
+
+1️⃣  01-LauthPlugin.java (2.5 KB)
+    📍 Paket: com.lunex.lauth
+    📝 Satırlar: ~250
+    🎯 Görev: Ana plugin sınıfı
+    
+    İçeriği:
+    ├─ onEnable()           - Plugin başlatılır
+    ├─ onDisable()          - Plugin kapatılır
+    ├─ createLobbyWorld()   - Lobby dünyasını oluştur
+    ├─ getInstance()        - Plugin örneğini döndür
+    ├─ getAuthManager()     - AuthManager'a erişim
+    └─ getLobbyWorld()      - Lobby dünyasına erişim
+    
+    Kurulum dosyası: src/main/java/com/lunex/lauth/LauthPlugin.java
+
+
+2️⃣  02-AuthManager.java (5.0 KB)
+    📍 Paket: com.lunex.lauth.managers
+    📝 Satırlar: ~250
+    🎯 Görev: Kimlik doğrulama yöneticisi
+    
+    İçeriği:
+    ├─ isRegistered()        - Oyuncu kayıtlı mı?
+    ├─ isAuthenticated()     - Oyuncu giriş yapmış mı?
+    ├─ register()            - Yeni hesap oluştur
+    ├─ login()               - Giriş yapma işlemi
+    ├─ setAuthenticated()    - Oyuncuyu oturum aç
+    ├─ logout()              - Oyuncuyu oturumdan çık
+    ├─ hashPassword()        - SHA-256 hashleme
+    └─ initializeAuthFile()  - users.yml dosyasını başlat
+    
+    Kurulum dosyası: src/main/java/com/lunex/lauth/managers/AuthManager.java
+
+
+3️⃣  03-PlayerListener.java (5.8 KB)
+    📍 Paket: com.lunex.lauth.listeners
+    📝 Satırlar: ~180
+    🎯 Görev: Oyuncu olaylarını dinleme
+    
+    Dinlenen Olaylar:
+    ├─ onPlayerJoin()           - Oyuncu bağlanır
+    ├─ onPlayerQuit()           - Oyuncu ayrılır
+    ├─ onPlayerMove()           - Oyuncu hareket eder
+    ├─ onPlayerInteract()       - Oyuncu etkileşim kurar
+    ├─ onBlockBreak()           - Blok kırılır
+    ├─ onBlockPlace()           - Blok yerleştirilir
+    ├─ onEntityDamage()         - Hasar alınır
+    └─ onFoodLevelChange()      - Açlık değişir
+    
+    Kurulum dosyası: src/main/java/com/lunex/lauth/listeners/PlayerListener.java
+
+
+4️⃣  04-LoginCommand.java (3.6 KB)
+    📍 Paket: com.lunex.lauth.commands
+    📝 Satırlar: ~120
+    🎯 Görev: /login komutu işleme
+    
+    Komut Format: /login <şifre>
+    
+    İçeriği:
+    ├─ onCommand()           - Komutu işle
+    ├─ Oyuncu kontrolü
+    ├─ Komut parametreleri kontrol
+    ├─ Şifre doğrulama
+    ├─ Başarı/başarısızlık mesajları
+    └─ Spawn TP işlemi
+    
+    Kurulum dosyası: src/main/java/com/lunex/lauth/commands/LoginCommand.java
+
+
+5️⃣  05-RegisterCommand.java (4.4 KB)
+    📍 Paket: com.lunex.lauth.commands
+    📝 Satırlar: ~150
+    🎯 Görev: /register komutu işleme
+    
+    Komut Format: /register <şifre> <şifre-tekrar>
+    
+    İçeriği:
+    ├─ onCommand()           - Komutu işle
+    ├─ Parametreleri kontrol (2 adet)
+    ├─ Şifre eşleşme kontrolü
+    ├─ Şifre uzunluğu kontrolü (3-32 char)
+    ├─ users.yml'ye yazma
+    ├─ setAuthenticated() çağrı
+    └─ Spawn TP işlemi
+    
+    Kurulum dosyası: src/main/java/com/lunex/lauth/commands/RegisterCommand.java
+
+
+═══════════════════════════════════════════════════════════════════════════════
+📋 YAPIYLANDIRMA DOSYALARI (3 Adet)
+═══════════════════════════════════════════════════════════════════════════════
+
+6️⃣  06-plugin.yml (589 B)
+    📍 Konum: src/main/resources/plugin.yml
+    🎯 Görev: Plugin tanımı ve komut kaydı
+    
+    İçeriği:
+    ├─ name: lauth
+    ├─ version: 1.0
+    ├─ main: com.lunex.lauth.LauthPlugin
+    ├─ description: Auth Plugin
+    ├─ author: LunexVanilla
+    ├─ commands (login, register)
+    └─ permissions (lauth.admin, lauth.bypass)
+    
+    Kurulum dosyası: src/main/resources/plugin.yml
+
+
+7️⃣  07-config.yml (2.6 KB)
+    📍 Konum: src/main/resources/config.yml
+    🎯 Görev: Plugin yapılandırması
+    
+    İçeriği:
+    ├─ lobby-world: lauth_lobby
+    ├─ main-world: world
+    ├─ min/max-password-length
+    ├─ rate-limit-seconds: 30
+    ├─ lobby-spawn (x, y, z koordinatları)
+    ├─ welcome-message (hoş geldiniz)
+    ├─ login-success, login-failed mesajları
+    └─ light-lobby, pvp-lobby ayarları
+    
+    Kurulum dosyası: src/main/resources/config.yml
+
+
+8️⃣  08-pom.xml (2.7 KB)
+    📍 Konum: lauth/pom.xml (proje root'u)
+    🎯 Görev: Maven derleme yapılandırması
+    
+    İçeriği:
+    ├─ groupId: com.lunex
+    ├─ artifactId: lauth
+    ├─ version: 1.0
+    ├─ packaging: jar
+    ├─ Bağımlılıklar (Spigot, Bukkit)
+    ├─ Eklentiler (maven-shade-plugin)
+    └─ Build konfigürasyonu
+    
+    Kurulum dosyası: lauth/pom.xml
+
+
+═══════════════════════════════════════════════════════════════════════════════
+📚 REHBER DOSYALARI
+═══════════════════════════════════════════════════════════════════════════════
+
+📖 KURULUM_REHBERI.md
+   → Detaylı adım adım kurulum rehberi
+   → Yapılandırma örnekleri
+   → Sorun giderme bölümü
+   → Güvenlik önerileri
+
+📖 README.md
+   → Proje tanıtımı ve özellikleri
+   → Komut referansı
+   → Dosya yapısı
+   → Lisans bilgileri
+
+📖 HIZLI_BASLANGIC.md
+   → 5 dakikada kurulum
+   → Temel oyun içi kullanım
+   → Hızlı yapılandırma
+   → Tips ve tricks
+
+📖 KOD_DOSYALARI_OZETI.md
+   → Java sınıflarının detaylı açıklaması
+   → Metod referansı
+   → Kod akışı şemaları
+   → Güvenlik implementasyonu
+
+📖 KAYNAK_KODLAR.txt
+   → Dosya yapısı detayları
+   → Import yapılandırmaları
+   → Derleme rehberi
+
+📖 PROJE_OZETI.txt
+   → Genel proje özeti
+   → Tüm özellikler
+   → Komutlar özet
+   → Destek bilgileri
+
+
+═══════════════════════════════════════════════════════════════════════════════
+🏗️ KURULUM - ADIM ADIM
+═══════════════════════════════════════════════════════════════════════════════
+
+1. PROJE YAPISINI OLUŞTUR:
+   mkdir -p lauth/src/main/java/com/lunex/lauth/{managers,listeners,commands}
+   mkdir -p lauth/src/main/resources
+
+2. JAVA DOSYALARINI YERLEŞT:
+   ├─ 01-LauthPlugin.java → src/main/java/com/lunex/lauth/LauthPlugin.java
+   ├─ 02-AuthManager.java → src/main/java/com/lunex/lauth/managers/AuthManager.java
+   ├─ 03-PlayerListener.java → src/main/java/com/lunex/lauth/listeners/PlayerListener.java
+   ├─ 04-LoginCommand.java → src/main/java/com/lunex/lauth/commands/LoginCommand.java
+   └─ 05-RegisterCommand.java → src/main/java/com/lunex/lauth/commands/RegisterCommand.java
+
+3. YAPIYLANDIRMA DOSYALARINI YERLEŞT:
+   ├─ 06-plugin.yml → src/main/resources/plugin.yml
+   ├─ 07-config.yml → src/main/resources/config.yml
+   └─ 08-pom.xml → lauth/ (proje root'u)
+
+4. DERLEME:
+   cd lauth
+   mvn clean package
+
+5. KURULUM:
+   cp target/lauth-1.0.jar /path/to/server/plugins/
+   ./start.sh
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 DOSYA YAPISI KONTROLÜ
+═══════════════════════════════════════════════════════════════════════════════
+
+Dosya yapısının şu şekilde olması gerekir:
+
+lauth/
+├── pom.xml                                  ✓ (08-pom.xml'den)
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/lunex/lauth/
+│       │       ├── LauthPlugin.java         ✓ (01-LauthPlugin.java'dan)
+│       │       ├── managers/
+│       │       │   └── AuthManager.java     ✓ (02-AuthManager.java'dan)
+│       │       ├── listeners/
+│       │       │   └── PlayerListener.java  ✓ (03-PlayerListener.java'dan)
+│       │       └── commands/
+│       │           ├── LoginCommand.java    ✓ (04-LoginCommand.java'dan)
+│       │           └── RegisterCommand.java ✓ (05-RegisterCommand.java'dan)
+│       └── resources/
+│           ├── plugin.yml                   ✓ (06-plugin.yml'den)
+│           └── config.yml                   ✓ (07-config.yml'den)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+🔍 PAKET YAPILARI
+═══════════════════════════════════════════════════════════════════════════════
+
+Her Java dosyasının başında bu paket satırı olmalı:
+
+▶ LauthPlugin.java:
+  package com.lunex.lauth;
+
+▶ AuthManager.java:
+  package com.lunex.lauth.managers;
+
+▶ PlayerListener.java:
+  package com.lunex.lauth.listeners;
+
+▶ LoginCommand.java:
+  package com.lunex.lauth.commands;
+
+▶ RegisterCommand.java:
+  package com.lunex.lauth.commands;
+
+
+═══════════════════════════════════════════════════════════════════════════════
+⚠️ ÖNEMLİ NOTLAR
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ Java dosyalarında PAKET adı çok önemli (com.lunex.lauth.*)
+✓ plugin.yml'de boşluklar ve indentasyon önemli (2 boşluk kullan)
+✓ config.yml'de YAML formatı doğru olmalı
+✓ pom.xml dosyasında bağımlılık sürümleri kontrol et
+✓ Maven ve Java 8+ gerekli
+✓ Derleme sırasında hataları dikkatle oku
+
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ KONTROL LISTESI
+═══════════════════════════════════════════════════════════════════════════════
+
+Kurulumdan önce kontrol et:
+  ☐ Tüm Java dosyaları doğru klasörlere kopyalandı
+  ☐ Paket isimleri doğru (package satırları)
+  ☐ plugin.yml ve config.yml doğru konumdalar
+  ☐ pom.xml proje root'unda
+  ☐ Java dosyaları .java uzantısında
+  ☐ Hiç dosya adında boşluk yok
+  ☐ Encoding UTF-8
+
+Derlemeden önce:
+  ☐ Maven yüklü (mvn -v kontrol et)
+  ☐ Java 8+ yüklü (java -version kontrol et)
+  ☐ İnternet bağlantısı var (maven bağımlılıkları indir)
+
+Derleme sonrası:
+  ☐ target/lauth-1.0.jar var
+  ☐ Hata yok (build success)
+  ☐ JAR dosyası ~50 KB civarında
+
+
+═══════════════════════════════════════════════════════════════════════════════
+📞 YARDIM VE DESTEK
+═══════════════════════════════════════════════════════════════════════════════
+
+Derleme hatası?
+  → Tüm import satırlarını kontrol et
+  → Paket isimlerini kontrol et
+  → pom.xml'deki bağımlılıkları kontrol et
+
+Plugin yüklenmedi?
+  → Sunucu loglarını kontrol et
+  → plugin.yml'de main sınıfını kontrol et
+  → Java sürümünü kontrol et
+
+Komutlar çalışmıyor?
+  → plugin.yml'de komut tanımları kontrol et
+  → Config dosyası oluştu mu kontrol et
+  → Sunucu konsolunda hata var mı kontrol et
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+            🎉 TÜM KODLAR HAZIR! KURULUMA BAŞLAYABILIRSIN! 🎉
+
+             KURULUM_REHBERI.md dosyasını oku → Adım adım takip et
+             Sorun varsa Discord'a gel → https://discord.gg/lunex
+
+═══════════════════════════════════════════════════════════════════════════════
